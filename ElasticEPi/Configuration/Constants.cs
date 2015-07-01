@@ -9,6 +9,7 @@ namespace ElasticEPi.Configuration {
             
         public const string InheritanceFieldName = "$types";
         public const string EPiServerContentTypeName = "epicontent";
+        public const string LanguageIndexFormat = "{0}-{1}";  //ex: indexname-sv
 
     }
 }

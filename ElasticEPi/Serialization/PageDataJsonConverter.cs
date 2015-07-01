@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 using ElasticEPi.Configuration;
 using ElasticEPi.Extensions;
@@ -16,10 +17,10 @@ namespace ElasticEPi.Serialization {
                 {Constants.InheritanceFieldName, JToken.FromObject(value.GetType().GetInheritancHierarchy())}
             };
             foreach (PropertyInfo prop in value.GetType().GetProperties()) {
-                if (prop.CanRead && (prop.PropertyType.IsValueType || prop.PropertyType == typeof(string)) || prop.PropertyType == typeof(ContentReference)) {
+                if (prop.CanRead && !prop.GetIndexParameters().Any()) {
                     var propValue = prop.GetValue(value);
                     if (propValue != null) {
-                        jo.Add(prop.Name.ToCamelCase(), JToken.FromObject(propValue, serializer));
+                        jo.Add(prop.Name.ToCamelCase(),  JToken.FromObject(propValue, serializer));
                     }
                 }
             }

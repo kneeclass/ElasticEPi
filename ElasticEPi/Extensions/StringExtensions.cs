@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace ElasticEPi.Extensions {
     internal static class StringExtensions {
@@ -20,6 +16,11 @@ namespace ElasticEPi.Extensions {
                 camelCase += s.Substring(1);
 
             return camelCase;
+        }
+
+        public static string StripHtml(this string input) {
+            var tagsExpression = new Regex(@"</?.+?>");
+            return tagsExpression.Replace(input, " ");
         }
 
     }

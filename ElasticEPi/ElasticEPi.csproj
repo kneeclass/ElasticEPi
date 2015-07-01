@@ -134,6 +134,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\EPiTest\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
@@ -169,13 +170,20 @@
     <Compile Include="Configuration\Constants.cs" />
     <Compile Include="ContentIndexingJob.cs" />
     <Compile Include="ElasticJsonConverter.cs" />
+    <Compile Include="Extensions\ElasticSearchClientExtensions.cs" />
+    <Compile Include="Extensions\QueryDescriptorExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="IndexingJobMonitor.cs" />
     <Compile Include="Initialization\SearchClientInitialization.cs" />
+    <Compile Include="Serialization\LinkItemConverter.cs" />
     <Compile Include="Serialization\NestInheritenceSerializer.cs" />
     <Compile Include="Serialization\PageDataJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\PreSearchModifiers\IPreSearchRewriter.cs" />
+    <Compile Include="Serialization\XHtmlStringConverter.cs" />
+    <Compile Include="Serialization\PropertyDataCollectionJsonConverter.cs" />
+    <Compile Include="Serialization\PreSearchModifiers\SearchDescriptorModifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
