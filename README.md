@@ -1,19 +1,12 @@
 #ElasticEPi
 
-##Installation
-Om du bara ska utveckla behöver du inte installera elasticsearch själv.
-på Amanda finns en färdig elasticsearch installation
-http://amanda:9200/
-
-Men behöver ska du använda ElasticEPi på en skarp site eller något annat kan det vara bra att kunna sätta upp en egen.
-
 ###Installera Java :/
 Installera JRE:n och kontrollera att JAVA_HOME system variablen pekar på din java installation
 
 ###Ladda hem Elasticsearch
 
 Den version som ElasticEPi är utvecklat för är 1.7.4.
-Det har kommit version 2.0 av Elasticsearch men då de paket som ElasticEPi använder sig utav inte riktigt hunnit med kör vi en ändre version för tillfället.
+Det har kommit version 2.0+ av Elasticsearch men då de paket som ElasticEPi använder sig utav inte riktigt hunnit med kör vi en ändre version för tillfället.
 Nerladdnings länk: https://www.elastic.co/downloads/past-releases/elasticsearch-1-7-4
 Extrahera din zip i lämplig mapp.
 
