@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using ElasticEPi.Configuration;
+using ElasticEPi.Indexing;
 using ElasticEPi.Serialization;
-using ElasticEPi.Serialization.PreSearchModifiers;
-using EPiServer.Core;
+using ElasticEPi.Serialization.SerializationModifiers;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.ServiceLocation;
@@ -20,28 +24,35 @@ namespace ElasticEPi.Initialization {
 
         public void ConfigureContainer(ServiceConfigurationContext context) {
 
-            var configuration = ClientConfigurationSection.GetConfiguration();
+            var configurationIndexResolver = new ConfigurationIndexResolver();
+            context.Container.Configure(x => x.For<IndexResolver>().Use(configurationIndexResolver));
 
-            var settings = new ConnectionSettings(
-                new Uri(configuration.ElasticSearchUrl),
-                configuration.DefaultIndex
-                );
-            settings.SetDefaultTypeNameInferrer(x => typeof(IContent).IsAssignableFrom(x) ? Constants.EPiServerContentTypeName : null);
-            settings.SetJsonSerializerSettingsModifier(x => {
-                x.Converters = new JsonConverter[] {
-                    new PageDataJsonConverter(), 
-                    new PropertyDataCollectionJsonConverter(),
-                    new LinkItemConverter()
-                };
-                x.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            //Modifiers
+            ContentIndexer.Instance.IndexingConventions.SerializationModifiers.Add(new TypesModifiers());
+            ContentIndexer.Instance.IndexingConventions.SerializationModifiers.Add(new AclModifier());
+            ContentIndexer.Instance.IndexingConventions.SerializationModifiers.Add(new FileContentModifier());
+
+            //JsonConverters
+            ContentIndexer.Instance.IndexingConventions.JsonConverters.AddRange(new JsonConverter[] {
+                new IContentJsonConverter(),
+                new ContentReferenceJsonConverter(),
+                new PropertyDataCollectionJsonConverter(),
+                new LinkItemConverter(),
+                new TypeConverter(),
+                new AccessControlListJsonConverter(),
+                new XHtmlStringConverter(),
+                new ContentAreaJsonConverter(),
+                new ContentMixinJsonConverter()
             });
-            //if debug ?
-            settings.ExposeRawResponse();
-            var elasticClient = new ElasticClient(settings,null, new NestInheritenceSerializer(settings));
-            context.Container.Configure(x => x.For<ConnectionSettings>().Use(settings));
-            context.Container.Configure(x => x.For<IElasticClient>().Use(elasticClient));
+
+
+            context.ConfigurationComplete += AddElasticClientToContainer;
+
         }
 
-
+        private void AddElasticClientToContainer(object sender, ServiceConfigurationEventArgs e) {
+            var client = SearchClientFactory.CreateClient(e.Container);
+            e.Container.Configure(x => x.For<IElasticClient>().Use(client));
+        }
     }
 }

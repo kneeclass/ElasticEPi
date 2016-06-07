@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 namespace ElasticEPi.Extensions {
-    internal static class TypeExtensions {
+    public static class TypeExtensions {
 
         public static IEnumerable<string> GetInheritancHierarchy(this Type type) {
             var retval = new List<string>();

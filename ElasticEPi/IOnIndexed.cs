@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ElasticEPi {
-    public class ElasticJsonConverterAttribute : Attribute {
+namespace ElasticEPi
+{
+    public interface IOnIndexed {
+        void OnIndexed();
     }
 }

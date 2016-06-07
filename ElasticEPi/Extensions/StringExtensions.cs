@@ -2,9 +2,9 @@
 using System.Text.RegularExpressions;
 
 namespace ElasticEPi.Extensions {
-    internal static class StringExtensions {
+    public static class StringExtensions {
 
-        internal static string ToCamelCase(this string s) {
+        public static string ToCamelCase(this string s) {
             if (string.IsNullOrEmpty(s))
                 return s;
 

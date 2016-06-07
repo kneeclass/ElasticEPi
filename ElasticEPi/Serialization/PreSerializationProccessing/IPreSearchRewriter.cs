@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ElasticEPi.Serialization.PreSearchModifiers {
+namespace ElasticEPi.Serialization.PreSerializationProccessing {
     interface IPreSearchModifier {
 
         void ModifySearch(object data);

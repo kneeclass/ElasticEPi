@@ -3,23 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using ElasticEPi.Extensions;
-using ElasticEPi.Serialization.PreSearchModifiers;
+using ElasticEPi.Logging;
 using Elasticsearch.Net.Serialization;
+using EPiServer.Logging;
 using Nest;
+using Newtonsoft.Json;
 
-namespace ElasticEPi.Serialization {
-    public class NestInheritenceSerializer : NestSerializer {
-        public NestInheritenceSerializer(IConnectionSettingsValues settings) : base(settings) {}
+namespace ElasticEPi.Serialization.PreSerializationProccessing {
+    public class PreSerializationProccessor : NestSerializer {
+        public PreSerializationProccessor(IConnectionSettingsValues settings) : base(settings) {}
 
-        public override byte[] Serialize(object data,
-            SerializationFormatting formatting = SerializationFormatting.Indented) {
+        public override byte[] Serialize(object data, SerializationFormatting formatting = SerializationFormatting.Indented) {
 
             var modifier = GetModifier(data);
-            if (modifier != null) {
+            if (modifier != null)
                 modifier.ModifySearch(data);
+            try {
+                return base.Serialize(data, formatting);
             }
-
-            return base.Serialize(data, formatting);
+            catch (JsonWriterException exception) {
+                Logger.WriteToLog($"PreSerializationProccessor failed. data type: {data.GetType().Name}",Level.Error,exception);
+                return null;
+            }
         }
 
 
