@@ -1,6 +1,8 @@
 #ElasticEPi
 
-###Installera Java :/
+##Installation
+
+###Installera Java
 Installera JRE:n och kontrollera att JAVA_HOME system variablen pekar på din java installation
 
 ###Ladda hem Elasticsearch
@@ -39,7 +41,7 @@ Börja med att lägga in den konfiguration som behövs
   <configSections>
     <section name="elasticEPi" type="ElasticEPi.Configuration.ClientConfigurationSection, ElasticEPi" />
   </configSections>
-  <elasticEPi elasticSearchUrl="http://amanda:9200/" defaultIndex="dev-MySearchIndex" />
+  <elasticEPi elasticSearchUrl="http://serverurl:9200/" defaultIndex="dev-MySearchIndex" />
 </configuration>
 ```
 
@@ -104,8 +106,6 @@ public class MyCustomJsonConverterInitialization : IConfigurableModule {
 1. Använd [ElasticEPiIgnore] attributet för att ignorera en propertie
 
 2. Block som ligger på sidor indexeras tillsammans med sidan. Dock endast sträng properties
-
-3. trolololololol
 
 
 
