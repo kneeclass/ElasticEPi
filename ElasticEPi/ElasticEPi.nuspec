@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>ElasticEPi</id>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <title>ElasticEPi</title>
     <authors>Niklas Emevi</authors>
     <owners>Niklas Emevi</owners>
@@ -14,7 +14,7 @@
     <dependencies>
       <dependency id="EPiServer.CMS.Core" version="9.5.0" />
       <dependency id="EPiServer.Framework" version="9.5.0" />
-      <dependency id="NEST" version="1.7.1" />
+      <dependency id="NEST" version="[1.7.1]" />
       <dependency id="log4net" version="2.0.3" />
     </dependencies>
   </metadata>
