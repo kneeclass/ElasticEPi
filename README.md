@@ -172,3 +172,12 @@ PUT myIndex/_mapping/epicontent
 	}
 }
 ```
+
+##Dependencies
+EPiServer.CMS.Core (>= 9.5.0)
+
+EPiServer.Framework (>= 9.5.0)
+
+NEST (= 1.7.1)
+
+log4net (>= 2.0.3)
