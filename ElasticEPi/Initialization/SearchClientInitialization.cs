@@ -34,7 +34,7 @@ namespace ElasticEPi.Initialization {
 
             //JsonConverters
             ContentIndexer.Instance.IndexingConventions.JsonConverters.AddRange(new JsonConverter[] {
-                new IContentJsonConverter(),
+                new ContentJsonConverter(),
                 new ContentReferenceJsonConverter(),
                 new PropertyDataCollectionJsonConverter(),
                 new LinkItemConverter(),

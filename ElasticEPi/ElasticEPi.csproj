@@ -152,6 +152,7 @@
     <Compile Include="Serialization\AccessControlListJsonConverter.cs" />
     <Compile Include="Serialization\BlocksConverter.cs" />
     <Compile Include="Serialization\ContentAreaJsonConverter.cs" />
+    <Compile Include="Serialization\ContentJsonConverter.cs" />
     <Compile Include="Serialization\ContentMixinJsonConverter.cs" />
     <Compile Include="Serialization\ContentReferenceJsonConverter.cs" />
     <Compile Include="Serialization\LinkItemConverter.cs" />
@@ -159,7 +160,6 @@
     <Compile Include="Serialization\PreSerializationProccessing\CrlTypeFilter.cs" />
     <Compile Include="Serialization\PreSerializationProccessing\IBuiltInFilter.cs" />
     <Compile Include="Serialization\PreSerializationProccessing\PreSerializationProccessor.cs" />
-    <Compile Include="Serialization\IContentJsonConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\PreSerializationProccessing\IPreSearchRewriter.cs" />
     <Compile Include="Serialization\PreSerializationProccessing\PublishedFilter.cs" />

@@ -16,7 +16,7 @@ using Newtonsoft.Json.Linq;
 namespace ElasticEPi.Serialization {
     
     // ReSharper disable once InconsistentNaming
-    public class IContentJsonConverter : JsonConverter {
+    public class ContentJsonConverter : JsonConverter {
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
             var jo = new JObject();
             AddAdditionalFields(jo,value);
